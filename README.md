@@ -1,8 +1,8 @@
 # Coins
 
-## Installation
+## Installation and Start
 
-Run `npm run app-install` to run installation for client and server modules. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Run `npm run app-install` to run installation for client and server modules. Once installation is complete run `npm run start` to begin the client and server side servers. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files. 
 
 ## Build
 
