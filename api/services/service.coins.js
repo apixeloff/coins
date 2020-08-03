@@ -9,7 +9,6 @@ class CoinService
 
     getMinimumCoins(currency, amount)
     {
-        console.log('amount', amount);
         let coins = new Coins();
         currency.pennies = currency.pennies || 0;
 

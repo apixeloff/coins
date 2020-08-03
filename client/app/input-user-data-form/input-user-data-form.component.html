@@ -25,16 +25,26 @@
 	<div fxLayout="column" fxLayoutGap="32px  grid">
 		<div fxLayout="column">
 			<p class="mat-title">Insert a dollar amount</p>
-			<div fxLayout="row" fxLayoutGap="32px">
+			<form class="form-horizontal" [formGroup]="form" fxLayout="row" fxLayoutAlign="center center">
+				<span class="material-icons">
+					attach_money
+				</span>
 				<mat-form-field fxLayout="row wrap">
-					<input matInput [formControl]="currencyFormControl" type="text" placeholder="Ex: 12.38"
-						class="mat-title">
+					<input matInput 
+							type="text" placeholder="Ex: 12.38"
+							class="mat-title"
+							formControlName="amount">
 				</mat-form-field>
 
 				<div class="button-holder">
-					<button mat-raised-button color="accent" (click)="onSubmit()">Calculate</button>
+					<button mat-raised-button 
+							color="accent" 
+							[disabled]="!form.valid"
+							(click)="onSubmit()">
+						Calculate
+					</button>
 				</div>
-			</div>
+			</form>
 		</div>
 	</div>
 
@@ -46,7 +56,7 @@
 			<mat-card-title>{{ subcurrency.display }}</mat-card-title>
 		</mat-card-header>
 		<mat-card-content fxLayoutAlign="center" class="mat-display-1">
-			{{coinResults[subcurrency.name]}}
+			{{coinResults[subcurrency.name]  }}
 		</mat-card-content>
 	</mat-card>
 </div>

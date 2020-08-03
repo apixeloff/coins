@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ThemePalette } from '@angular/material/core';
-import { FormControl, FormGroup, FormGroupDirective, NgForm, Validators } from '@angular/forms';
+import { FormControl, FormGroup, FormGroupDirective, NgForm, Validators, FormBuilder } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
@@ -12,7 +12,7 @@ import { environment } from '../../environments/environment';
   templateUrl: './input-user-data-form.component.html',
   styleUrls: ['./input-user-data-form.component.scss']
 })
-export class InputUserDataFormComponent {
+export class InputUserDataFormComponent implements OnInit {
 
   allCurrency: CurrencyOption = {
     display: 'Select coin denominations',
@@ -31,15 +31,18 @@ export class InputUserDataFormComponent {
 
   allComplete: boolean = false;
 
-  currencyFormControl = new FormControl('', [
-    Validators.required
-  ]);
-
   matcher = new MyErrorStateMatcher();
   coinRequest: CoinsRequest = new CoinsRequest();
   coinResults: CoinsResults = new CoinsResults();
+  form: FormGroup;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private formBuilder: FormBuilder) {}
+
+  ngOnInit() {
+    this.form = this.formBuilder.group({
+      amount: [null, Validators.required]
+    });
+  }
 
   updateAllComplete(subtask) {
     this.allComplete = this.allCurrency.subcurrencies != null && this.allCurrency.subcurrencies.every(t => t.completed);
@@ -61,12 +64,11 @@ export class InputUserDataFormComponent {
   }
 
   onSubmit() {
-    this.coinRequest.amount = this.currencyFormControl.value * 1;
+    this.coinRequest.amount = this.form.get('amount').value.replace(/,/g, "");
     this.allCurrency.subcurrencies.map(t => {
       this.coinRequest.currency[t.name] = t.completed;
     });
     this.http.post(environment.endpoint + '/coins', this.coinRequest).subscribe(results => {
-      console.log('results',results);
       this.coinResults = results as CoinsResults;
     })
   }
