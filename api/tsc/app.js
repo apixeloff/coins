@@ -1,0 +1,11 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express = require("express");
+var path = require('path');
+var bodyParser = require('body-parser');
+const app = express();
+var coins = require('./routes/coins');
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use('/api/coins', coins);
+module.exports = app;

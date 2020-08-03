@@ -1,0 +1,20 @@
+<div class="content">
+  <div>
+    <mat-toolbar color="primary">
+      <span class="fill-remaining-space">
+        Greedy coin minimizer
+        <div>An example application by Kevin G. Phillips</div>
+      </span>
+    </mat-toolbar>
+
+    <mat-toolbar color="secondary">
+      Input a dollar amount, choose which coins you want to use in the calculation, and view the results!
+    </mat-toolbar>
+
+    <div class="container" fxLayout="column" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.25%" fxLayoutAlign="left">
+        <input-user-data-form></input-user-data-form> 
+    </div>
+  </div>
+</div>
+
+<router-outlet></router-outlet>

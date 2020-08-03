@@ -1,0 +1,43 @@
+.fill-remaining-space {
+  /* This fills the remaining space, by using flexbox. 
+     Every toolbar row uses a flexbox row layout. */
+  flex: 1 1 auto;
+}
+
+.container {
+  padding: 10px;
+}
+
+.form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.form-element {
+  padding: 5px 0px 25px 2px;
+  width: 100%;
+}
+
+.button {
+  width: 100%;
+}
+
+.input-holder {
+  font-size: 24px;
+  margin-top: 2em;
+}
+
+.currency-holder {
+  margin: 1em 0;
+}
+
+.currency-options-holder {
+  padding: 1em;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+}
+
+.mat-input-element {
+  font-size: 2em;
+}
